@@ -10,52 +10,37 @@ function playerPlay(selection){
 function playRound(playerSelection){
     let computerSelection = computerPlay();
     console.log(playerSelection, computerSelection);
-    score = evalMatch(playerSelection, computerSelection);
-    if (score == 1){
+    gameResults = evalMatch(playerSelection, computerSelection);
+    //if player wins
+    if (gameResults == 1){
         scorePlayer += 1;
-    } else if (score == 2){
+        console.log('%s wins against %s', playerSelection, computerSelection)
+    //if player loses    
+    } else if (gameResults == 2){
         scoreComputer += 1;
+        console.log('%s loses against %s', playerSelection, computerSelection)
     }
     console.log(scorePlayer, scoreComputer);
 }
 
-function evalMatch(option1, option2){
-    if (option1 == option2){
+function evalMatch(player1, player2){
+    if (player1 == player2){
         console.log('tie');
         return 0
     }
-    if (option1=="rock"){
-        if (option2=="scissors"){
-            console.log('rock wins');
-            return 1
-        } else if (option2=="paper"){
-            console.log('paper wins');
-            return 2
-        }
-    }
-    if (option1=="scissors"){
-        if (option2=="paper"){
-            console.log('scissors wins');
-            return 1
-        } else if (option2=='rock'){
-            console.log('rock wins');
-            return 2
-        }
-    }
-    if (option1=="paper"){
-        if (option2=="rock"){
-            console.log('paper wins');
-            return 1
-        } else if (option2=="scissors"){
-            console.log('scissors wins');
-            return 2
-        }
+    if ((player1 ==='rock' && player2 ==='scissors') ||
+        (player1 ==='scissors'&& player2==='paper') ||
+        (player1 ==='paper' && player2 ==='rock')){
+            return 1;
+    } else {
+            return 2;
     }
 }
 let scorePlayer = 0
 let scoreComputer = 0
 
 function game(){
+    //reset scores
     scorePlayer = 0;
     scoreComputer = 0;
     for (let i = 0; i < 5; i++){
