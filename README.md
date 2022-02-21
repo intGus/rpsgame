@@ -1,2 +1,2 @@
 # rpsgame
-Rock-Paper-Scisor game
+Rock-Paper-Scissors game
