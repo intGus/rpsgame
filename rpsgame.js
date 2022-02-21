@@ -14,11 +14,11 @@ function playRound(playerSelection){
     //if player wins
     if (gameResults == 1){
         scorePlayer += 1;
-        console.log('%s wins against %s', playerSelection, computerSelection)
+        console.log(`${playerSelection} wins against ${computerSelection}`)
     //if player loses    
     } else if (gameResults == 2){
         scoreComputer += 1;
-        console.log('%s loses against %s', playerSelection, computerSelection)
+        console.log(`${playerSelection} loses against ${computerSelection}`)
     }
     console.log(scorePlayer, scoreComputer);
 }
@@ -36,15 +36,13 @@ function evalMatch(player1, player2){
             return 2;
     }
 }
-let scorePlayer = 0
-let scoreComputer = 0
 
 function game(){
     //reset scores
     scorePlayer = 0;
     scoreComputer = 0;
     for (let i = 0; i < 5; i++){
-        let playerSelection = prompt("Write rock, paper or scissors");
+        let playerSelection = (prompt("Write rock, paper or scissors")).toLowerCase();
         playRound(playerSelection);
     }
     if (scorePlayer > scoreComputer){
@@ -55,3 +53,6 @@ function game(){
         console.log('tie')
     }
 }
+
+let scorePlayer = 0
+let scoreComputer = 0
