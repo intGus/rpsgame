@@ -9,22 +9,30 @@ function playerPlay(selection){
 
 function playRound(playerSelection){
     let computerSelection = computerPlay();
+    playerCont.textContent ='You: ' + playerSelection;
+    computerCont.textContent = 'Computer: ' + computerSelection;
     console.log(playerSelection, computerSelection);
     gameResults = evalMatch(playerSelection, computerSelection);
     //if player wins
     if (gameResults == 1){
         scorePlayer += 1;
+        resultCont.textContent = `${playerSelection} wins against ${computerSelection}`
         console.log(`${playerSelection} wins against ${computerSelection}`)
     //if player loses    
     } else if (gameResults == 2){
         scoreComputer += 1;
+        resultCont.textContent = `${playerSelection} loses against ${computerSelection}`
         console.log(`${playerSelection} loses against ${computerSelection}`)
     }
+    scorePlayerCont.textContent = scorePlayer;
+    scoreComputerCont.textContent = scoreComputer;
     console.log(scorePlayer, scoreComputer);
+    checkGame();
 }
 
 function evalMatch(player1, player2){
     if (player1 == player2){
+        resultCont.textContent = 'Tie'
         console.log('tie');
         return 0
     }
@@ -54,5 +62,27 @@ function game(){
     }
 }
 
+function checkGame(){
+    if (scorePlayer == 5 && scorePlayer > scoreComputer){
+        alert('Player wins');
+        
+    } else if (scoreComputer == 5  && scorePlayer < scoreComputer){
+        alert('Computer wins');
+    }
+}
+
 let scorePlayer = 0
 let scoreComputer = 0
+
+const playerCont =  document.querySelector('#player');
+const computerCont = document.querySelector('#computer');
+const resultCont = document.querySelector('#result');
+const scorePlayerCont = document.querySelector('#scorePlayer');
+const scoreComputerCont = document.querySelector('#scoreComputer');
+
+const btns = document.querySelectorAll('button');
+btns.forEach((button) => {
+    button.addEventListener('click', () => {
+        playRound(button.id);
+    });
+});
