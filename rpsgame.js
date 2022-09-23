@@ -45,34 +45,25 @@ function evalMatch(player1, player2){
     }
 }
 
-function game(){
+function newGame(){
     //reset scores
     scorePlayer = 0;
     scoreComputer = 0;
-    for (let i = 0; i < 5; i++){
-        let playerSelection = (prompt("Write rock, paper or scissors")).toLowerCase();
-        playRound(playerSelection);
-    }
-    if (scorePlayer > scoreComputer){
-        console.log('Player wins');
-    } else if (scorePlayer < scoreComputer){
-        console.log('Computer wins');
-    } else {
-        console.log('tie')
-    }
+
+    scorePlayerCont.textContent = scorePlayer;
+    scoreComputerCont.textContent = scoreComputer;
+    
 }
 
 function checkGame(){
     if (scorePlayer == 5 && scorePlayer > scoreComputer){
         alert('Player wins');
-        
+        newGame();        
     } else if (scoreComputer == 5  && scorePlayer < scoreComputer){
         alert('Computer wins');
+        newGame();
     }
 }
-
-let scorePlayer = 0
-let scoreComputer = 0
 
 const playerCont =  document.querySelector('#player');
 const computerCont = document.querySelector('#computer');
@@ -86,3 +77,7 @@ btns.forEach((button) => {
         playRound(button.id);
     });
 });
+
+let scorePlayer = 0;
+let scoreComputer = 0;
+newGame();
